@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #ccc;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #555;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+      #logo {
+          font-family: 'Courier New', Courier, monospace;
+          white-space: pre;
+          font-size: 8px;
+          line-height: 0.8;
+          text-align: center;
+          color: #007BFF;
+          margin-bottom: 10px;
+          margin-left: 5px;
+          margin-right: 60px;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            ________  _______    ______          __     __  _______
+          |        \|       \  /      \        |  \   |  \|       \
+           \$$$$$$$$| $$$$$$$\|  $$$$$$\       | $$   | $$| $$$$$$$\
+             | $$   | $$__| $$ \$$__| $$ ______| $$   | $$| $$__| $$
+             | $$   | $$    $$  |     $$|      \\$$\ /  $$| $$    $$
+             | $$   | $$$$$$$\ __\$$$$$\ \$$$$$$ \$$\  $$ | $$$$$$$\
+             | $$   | $$  | $$|  \__| $$          \$$ $$  | $$  | $$
+             | $$   | $$  | $$ \$$    $$           \$$$   | $$  | $$
+              \$$    \$$   \$$  \$$$$$$             \$     \$$   \$$
+        </div>
+    </header>
+
+    <nav>
+        <a href="#" id="aboutButton">About</a>
+        <a href="#" id="projectsButton">Projects</a>
+        <a href="#" id="contactButton">Contact</a>
+    </nav>
+
+    <main>
+        <div id="content"></div>
+    </main>
+
+    <script>
+        let currentTimeout;
+
+        function clearContent() {
+            clearTimeout(currentTimeout);
+            document.getElementById('content').innerHTML = '';
+        }
+
+      function printText(text, targetId, newline = true) {
+          const targetElement = document.getElementById(targetId);
+
+          if (newline) {
+              text += '\n';
+          }
+
+          let i = 0;
+
+          function printNextCharacter() {
+              targetElement.innerHTML += text[i].replace('\n', '<br>');
+              i++;
+
+              if (i < text.length) {
+                  currentTimeout = setTimeout(printNextCharacter, 50);
+              }
+          }
+
+          printNextCharacter();
+      }
+
+      function printText2(text, targetId, newline = true) {
+          const targetElement = document.getElementById(targetId);
+
+          if (newline) {
+              text += '\n';
+          }
+
+          let i = 0;
+
+          function printNextCharacter() {
+              targetElement.innerHTML += text[i].replace('\n', '<br>');
+              i++;
+
+              if (i < text.length) {
+                  currentTimeout = setTimeout(printNextCharacter, 150);
+              }
+          }
+
+          printNextCharacter();
+      }
+
+        document.getElementById('contactButton').addEventListener('click', function() {
+            clearContent();
+            printText("contact@tr3-vr.com", 'content');
+        });
+
+        document.getElementById('projectsButton').addEventListener('click', function() {
+            clearContent();
+            printText2("[REDACTED]", 'content');
+            currentTimeout = setTimeout(function() {
+              clearContent();
+            }, 2000);
+      });
+
+        document.getElementById('aboutButton').addEventListener('click', function() {
+            clearContent();
+            printText("Yes, this page is a Destiny 2 refference, which would be a bit cooler if the game hadn't gone to shit. Anyways I'm Trevor, I love messing around with websites and playing video games. Also dying opinion here, but books are sometimes nice. One last thing, here's a magic trick:\n \n\n  \n   \n    \n\n\n\nWoahh wasn't that cool?\n\n\n\nI have brain damage.", 'content');
+        });
+
+    </script>
+</body>
+</html>
